@@ -8,6 +8,7 @@ using System.IO;
 public class GameManager : MonoBehaviour {
 
     public static GameManager instance;
+    private string fileName = "/playerInfo.dat";
 
     private void Awake()
     {
@@ -37,13 +38,26 @@ public class GameManager : MonoBehaviour {
     public void Save()
     {
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Open(Application.persistentDataPath + "/playerInfo.dat", FileMode.Open);
+        FileStream file = File.Open(Application.persistentDataPath + fileName, FileMode.Open);
 
         PlayerData data = new PlayerData();
         data.Energy = EnergyManager.EnergyMeter;
 
         bf.Serialize(file, data);
         file.Close();
+    }
+
+    public void Load()
+    {
+        if (File.Exists(Application.persistentDataPath + fileName))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath + fileName, FileMode.Open);
+            PlayerData data = (PlayerData)bf.Deserialize(file);
+            file.Close();
+
+            EnergyManager.EnergyMeter = data.Energy;
+        }
     }
 }
 
