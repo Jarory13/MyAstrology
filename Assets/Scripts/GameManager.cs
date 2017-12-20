@@ -8,6 +8,7 @@ using System.IO;
 public class GameManager : MonoBehaviour {
 
     public static GameManager instance;
+    public UIManager UI;
     private string fileName = "/playerInfo.dat";
 
     private void Awake()
@@ -58,6 +59,28 @@ public class GameManager : MonoBehaviour {
 
             EnergyManager.EnergyMeter = data.Energy;
         }
+    }
+
+    public void TogglePauseMenu()
+    {
+        // not the optimal way but for the sake of readability
+        Canvas[] canvases = UI.GetComponentsInChildren<Canvas>();
+
+        foreach (Canvas canvas in canvases)
+        {
+            if (canvas.enabled)
+            {
+                canvas.enabled = !canvas.enabled;
+                Time.timeScale = 1.0f;
+            }
+            else
+            {
+                canvas.enabled = !canvas.enabled;
+                Time.timeScale = 0f;
+            }
+        }
+
+        Debug.Log("GAMEMANAGER:: TimeScale: " + Time.timeScale);
     }
 }
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TappableObject : MonoBehaviour {
+public class UIManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -13,9 +13,4 @@ public class TappableObject : MonoBehaviour {
 	void Update () {
 		
 	}
-
-    public void onTap()
-    {
-        Destroy(gameObject);
-    }
 }

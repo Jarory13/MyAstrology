@@ -336,6 +336,7 @@
     <Compile Include="Assets\Scripts\EnergyManager.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\TappableObject.cs" />
+    <Compile Include="Assets\UIManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Fingers\ChangeLog.txt" />
